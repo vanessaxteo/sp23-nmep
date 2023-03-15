@@ -54,11 +54,11 @@ Read through `README.md` and follow the steps to understand how the repo is stru
 
 ## 0.2 How would you add support for a new dataset? What files would you need to change?
 
-`We would need to make `
+`We would need to change the data in datasets.py file and data in build.py file.`
 
 ## 0.3 Where is the actual training code?
 
-`YOUR ANSWER HERE`
+`The actual training code would be in the main.py file, which sets up the training loop, initializes the model, loads the data, and runs the training epochs.`
 
 ## 0.4 Create a diagram explaining the structure of `main.py` and the entire code repo.
 
@@ -76,49 +76,49 @@ The following questions relate to `data/build.py` and `data/datasets.py`.
 
 ### 1.0.0 What does `build_loader` do?
 
-`YOUR ANSWER HERE`
+`build_loader is a function that constructs a PyTorch data loader object for a given dataset.`
 
 ### 1.0.1 What functions do you need to implement for a PyTorch Datset? (hint there are 3)
 
-`YOUR ANSWER HERE`
+`__init__, __len__, and __getitem__`
 
 ## 1.1 CIFAR10Dataset
 
 ### 1.1.0 Go through the constructor. What field actually contains the data? Do we need to download it ahead of time?
 
-`YOUR ANSWER HERE`
+`torchvision.datasets.CIFAR10 contains the data, so we do not need to download it ahead of time. `
 
 ### 1.1.1 What is `self.train`? What is `self.transform`?
 
-`YOUR ANSWER HERE`
+`self.train is a boolean flag indicating if the dataset is for training or not. self.transform is an optional transformation applied to the data.`
 
 ### 1.1.2 What does `__getitem__` do? What is `index`?
 
-`YOUR ANSWER HERE`
+`__getitem__ lets us get a sample and label from a dataset at a specific index. index is the position of the sample in the dataset.`
 
 ### 1.1.3 What does `__len__` do?
 
-`YOUR ANSWER HERE`
+`__len__ returns the length of an object.`
 
 ### 1.1.4 What does `self._get_transforms` do? Why is there an if statement?
 
-`YOUR ANSWER HERE`
+`self._get_transforms returns a set of transformations. There is an if statement because it applies specific transformations only to items that fall under that criteria.`
 
 ### 1.1.5 What does `transforms.Normalize` do? What do the parameters mean? (hint: take a look here: https://pytorch.org/vision/main/generated/torchvision.transforms.Normalize.html)
 
-`YOUR ANSWER HERE`
+`transforms.Normalize scales a tensor image based on the mean and standard deviation. It preprocesses input data and is used after converting the input image to a tensor.`
 
 ## 1.2 MediumImagenetHDF5Dataset
 
 ### 1.2.0 Go through the constructor. What field actually contains the data? Where is the data actually stored on honeydew? What other files are stored in that folder on honeydew? How large are they?
 
-`YOUR ANSWER HERE`
+`datasets.py actually contains the data. `
 
 > *Some background*: HDF5 is a file format that stores data in a hierarchical structure. It is similar to a python dictionary. The files are binary and are generally really efficient to use. Additionally, `h5py.File()` does not actually read the entire file contents into memory. Instead, it only reads the data when you access it (as in `__getitem__`). You can learn more about [hdf5 here](https://portal.hdfgroup.org/display/HDF5/HDF5) and [h5py here](https://www.h5py.org/).
 
 ### 1.2.1 How is `_get_transforms` different from the one in CIFAR10Dataset?
 
-`YOUR ANSWER HERE`
+`_get_transforms is different from the one in the CIFAR10Dataset because it applies normalization, resizing, and data augmentation if the dataset is for training, while the one in the CIFAR10Dataset applies those functions only for the training dataset.`
 
 ### 1.2.2 How is `__getitem__` different from the one in CIFAR10Dataset? How many data splits do we have now? Is it different from CIFAR10? Do we have labels/annotations for the test set?
 
@@ -139,7 +139,7 @@ The following questions relate to `models/build.py` and `models/models.py`.
 
 ## What models are implemented for you?
 
-`YOUR ANSWER HERE`
+`LeNet, and ResNet`
 
 ## What do PyTorch models inherit from? What functions do we need to implement for a PyTorch Model? (hint there are 2)
 
@@ -157,16 +157,16 @@ The following questions relate to `main.py`, and the configs in `configs/`.
 
 ## 3.0 What configs have we provided for you? What models and datasets do they train on?
 
-`YOUR ANSWER HERE`
+`lenet_cifar, resnet18_cifar, resnet18_medium_imagenet. They train on LeNet and ResNet respectively, and on CIFAR10, CIFAR10, and ImageNet respectively.`
 
 ## 3.1 Open `main.py` and go through `main()`. In bullet points, explain what the function does.
 
-`YOUR ANSWER HERE`
+`Load config file. Create model object. Load data for training. Trains model on training data. Evaluates model on testing data. Saves trained model.`
 
 ## 3.2 Go through `validate()` and `evaluate()`. What do they do? How are they different? 
 > Could we have done better by reusing code? Yes. Yes we could have but we didn't... sorry...
 
-`YOUR ANSWER HERE`
+`validate() returns the average loss and accuracy of a trained model of a given dataset, while evaluate() returns a confusion matrix and classification report of a trained model of a given dataset.`
 
 
 # Part 4: AlexNet
@@ -224,7 +224,7 @@ Report training and validation accuracy on AlexNet and LeNet. Report hyperparame
 
 ## 5.1 Plot the training and validation accuracy and loss curves for AlexNet and LeNet. Attach the plot and any observations you have below.
 
-`YOUR ANSWER HERE`
+`AlexNet: `
 
 ## 5.2 For just AlexNet, vary the learning rate by factors of 3ish or 10 (ie if it's 3e-4 also try 1e-4, 1e-3, 3e-3, etc) and plot all the loss plots on the same graph. What do you observe? What is the best learning rate? Try at least 4 different learning rates.
 
@@ -255,7 +255,7 @@ You only need to observe the training for ~ 5 epochs to average out the noise in
 
 In `models/models.py`, we provided some skelly/guiding comments to implement ResNet. Implement it and train it on CIFAR10. Report training and validation curves, hyperparameters, best validation accuracy, and training time as compared to AlexNet. 
 
-`YOUR ANSWER HERE`
+`My best validation accuracy was 85.65, and my validation loss was 0.7011. It took way longer to train than AlexNet, granted there were 50 more epochs to run.`
 
 ## 6.1 Visualize examples
 

@@ -20,6 +20,10 @@ from models import build_model
 from optimizer import build_optimizer
 from utils import create_logger, load_checkpoint, save_checkpoint
 
+import wandb
+wandb.init(project="sp23-nmep-hw1")
+
+
 
 def parse_option():
     parser = argparse.ArgumentParser("Vision model training and evaluation script", add_help=False)
@@ -98,6 +102,8 @@ def main(config):
 
         if epoch % config.SAVE_FREQ == 0 or epoch == (config.TRAIN.EPOCHS - 1):
             save_checkpoint(config, epoch, model, max_accuracy, optimizer, lr_scheduler, logger)
+
+        wandb.log({'train accuracy': train_acc1, 'train loss': train_loss, 'val accuracy': val_acc1, 'val loss': val_loss})
 
         max_accuracy = max(max_accuracy, val_acc1)
         logger.info(f"Max accuracy: {max_accuracy:.2f}%\n")

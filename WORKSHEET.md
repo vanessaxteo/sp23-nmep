@@ -8,7 +8,7 @@ This is the worksheet for Homework 1. Your deliverables for this homework are:
 - [ ] Kaggle submission and writeup (details below)
 - [ ] Github repo with all of your code! You need to either fork it or just copy the code over to your repo. A simple way of doing this is provided below. Include the link to your repo below. If you would like to make the repo private, please dm us and we'll send you the GitHub usernames to add as collaborators.
 
-`YOUR GITHUB REPO HERE (or notice that you DMed us to share a private repo)`
+`https://github.com/vanessaxteo/sp23-nmep`
 
 ## To move to your own repo:
 
@@ -28,15 +28,15 @@ Feel free to ask your NMEP friends if you don't know!
 
 ## -1.0 What is the difference between `torch.nn.Module` and `torch.nn.functional`?
 
-`YOUR ANSWER HERE`
+`torch.nn.Module defines and manages neural network modules, while torch.nn.functional gives stateless functions that can help implement forward passes of a neural network`
 
 ## -1.1 What is the difference between a Dataset and a DataLoader?
 
-`YOUR ANSWER HERE`
+`a Dataset provides access to individual samples of a dataset, capturing the data and labels of a dataset, while a DataLoader loads the data from a Dataset and gives an iterable interface for dataloading.`
 
 ## -1.2 What does `@torch.no_grad()` above a function header do?
 
-`YOUR ANSWER HERE`
+`@torch.no_grad() is used to temporarily disable gradient computation, allowing a function to execute itself without building a computational graph for backpropogation.`
 
 
 
@@ -46,15 +46,15 @@ Read through `README.md` and follow the steps to understand how the repo is stru
 
 ## 0.0 What are the `build.py` files? Why do we have them?**
 
-`YOUR ANSWER HERE`
+`the build.py files are used to build the model and data loaders using the configs, and the config parameters then call the appropriate class to build the model or data loader. We have them because they essentially act as a liaison between the configs and the actual code.`
 
 ## 0.1 Where would you define a new model?
 
-`YOUR ANSWER HERE`
+`You would define a new model in the models directory, specifically in the build.py file.`
 
 ## 0.2 How would you add support for a new dataset? What files would you need to change?
 
-`YOUR ANSWER HERE`
+`We would need to make `
 
 ## 0.3 Where is the actual training code?
 
@@ -122,7 +122,7 @@ The following questions relate to `data/build.py` and `data/datasets.py`.
 
 ### 1.2.2 How is `__getitem__` different from the one in CIFAR10Dataset? How many data splits do we have now? Is it different from CIFAR10? Do we have labels/annotations for the test set?
 
-`YOUR ANSWER HERE`
+`You get the image from the file, and you get splits of the image, rather than getting the direct image from the dataset`
 
 ### 1.2.3 Visualizing the dataset
 

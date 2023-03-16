@@ -1,0 +1,8 @@
+usage: Vision model training and evaluation script --cfg FILE
+                                                   [--opts OPTS [OPTS ...]]
+                                                   [--batch-size BATCH_SIZE]
+                                                   [--data-path DATA_PATH]
+                                                   [--resume RESUME]
+                                                   [--output PATH] [--eval]
+                                                   [--throughput]
+Vision model training and evaluation script: error: argument --resume: expected one argument

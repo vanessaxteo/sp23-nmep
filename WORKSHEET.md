@@ -280,6 +280,7 @@ Your Kaggle scores should approximately match your validation scores. If they do
 (Soon) when you run the training script, it will output a file called `submission.csv`. This is the file you need to submit to Kaggle. You're required to submit at least once. 
 
 ## Kaggle writeup
+`the first time i ran my model entirely, i changed the min lr to 1e^-4, only for it to be worse than when suhani ran the original model. the second time i decided to keep the same lr, change the batchsize to 128, and run 15 training epochs, ONLY FOR IT TO BE WORSE?????? im literally fighting for my life rn im absolutely devastated.`
 
 We don't expect anything fancy here. Just a brief summary of what you did, what worked, what didn't, and what you learned. If you want to include any plots, feel free to do so. That's brownie points. Feel free to write it below or attach it in a separate file.
 

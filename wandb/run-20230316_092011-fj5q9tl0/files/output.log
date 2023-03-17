@@ -1,0 +1,612 @@
+=> merge config from configs/resnet18_base.yaml
+[32m[2023-03-16 09:20:14 resnet18][33m(main.py 239)[39m: INFO Full config saved to output/resnet18/config.yaml
+[32m[2023-03-16 09:20:14 resnet18][33m(main.py 242)[39m: INFO AUG:
+  COLOR_JITTER: 0.4
+  RAND_AUGMENT: rand-m9-mstd0.5-inc1
+BASE:
+- ''
+DATA:
+  BATCH_SIZE: 1024
+  DATASET: cifar10
+  DATA_PATH: ''
+  IMG_SIZE: 32
+  INTERPOLATION: bicubic
+  NUM_WORKERS: 8
+  PIN_MEMORY: true
+EVAL_MODE: false
+MODEL:
+  DROP_RATE: 0.0
+  NAME: resnet18
+  NUM_CLASSES: 10
+  RESNET: {}
+  RESUME: ''
+OUTPUT: output/resnet18
+PRINT_FREQ: 500
+SAVE_FREQ: 1
+SEED: 0
+TEST:
+  CROP: true
+  SEQUENTIAL: false
+  SHUFFLE: false
+TRAIN:
+  ACCUMULATION_STEPS: 1
+  EPOCHS: 100
+  LR: 0.0003
+  LR_SCHEDULER:
+    NAME: cosine
+  MIN_LR: 3.0e-05
+  OPTIMIZER:
+    BETAS:
+    - 0.9
+    - 0.999
+    EPS: 1.0e-08
+    MOMENTUM: 0.9
+    NAME: sgd
+  START_EPOCH: 0
+  WARMUP_EPOCHS: 20
+  WARMUP_LR: 3.0e-05
+[32m[2023-03-16 09:20:14 resnet18][33m(main.py 243)[39m: INFO {"cfg": "configs/resnet18_base.yaml", "opts": null, "batch_size": null, "data_path": null, "resume": null, "output": "output", "eval": false, "throughput": false}
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+[32m[2023-03-16 09:20:20 resnet18][33m(main.py 73)[39m: INFO N/A indicates a possibly missing statistic due to how the module was called. Missing values are still included in the parent's total.
+ResNet18(
+  #params: 11.18M, #flops: 0.56G
+  (conv1): Conv2d(
+    3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+    #params: 1.73K, #flops: 1.77M
+  )
+  (bn1): BatchNorm2d(
+    64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True
+    #params: 0.13K, #flops: 0.33M
+  )
+  (layer1): Sequential(
+    #params: 0.15M, #flops: 0.15G
+    (0): ResNetBlock(
+      #params: 74.11K, #flops: 76.15M
+      (conv1): Conv2d(
+        64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)
+        #params: 36.93K, #flops: 37.75M
+      )
+      (bn1): BatchNorm2d(
+        64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True
+        #params: 0.13K, #flops: 0.33M
+      )
+      (conv2): Conv2d(
+        64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)
+        #params: 36.93K, #flops: 37.75M
+      )
+      (bn2): BatchNorm2d(
+        64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True
+        #params: 0.13K, #flops: 0.33M
+      )
+      (shortcut): Sequential(#params: 0, #flops: N/A)
+    )
+    (1): ResNetBlock(
+      #params: 74.11K, #flops: 76.15M
+      (conv1): Conv2d(
+        64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)
+        #params: 36.93K, #flops: 37.75M
+      )
+      (bn1): BatchNorm2d(
+        64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True
+        #params: 0.13K, #flops: 0.33M
+      )
+      (conv2): Conv2d(
+        64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)
+        #params: 36.93K, #flops: 37.75M
+      )
+      (bn2): BatchNorm2d(
+        64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True
+        #params: 0.13K, #flops: 0.33M
+      )
+      (shortcut): Sequential(#params: 0, #flops: N/A)
+    )
+  )
+  (layer2): Sequential(
+    #params: 0.53M, #flops: 0.14G
+    (0): ResNetBlock(
+      #params: 0.23M, #flops: 59.21M
+      (conv1): Conv2d(
+        64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1)
+        #params: 73.86K, #flops: 18.87M
+      )
+      (bn1): BatchNorm2d(
+        128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True
+        #params: 0.26K, #flops: 0.16M
+      )
+      (conv2): Conv2d(
+        128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)
+        #params: 0.15M, #flops: 37.75M
+      )
+      (bn2): BatchNorm2d(
+        128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True
+        #params: 0.26K, #flops: 0.16M
+      )
+      (shortcut): Sequential(
+        #params: 8.58K, #flops: 2.26M
+        (0): Conv2d(
+          64, 128, kernel_size=(1, 1), stride=(2, 2)
+          #params: 8.32K, #flops: 2.1M
+        )
+        (1): BatchNorm2d(
+          128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True
+          #params: 0.26K, #flops: 0.16M
+        )
+      )
+    )
+    (1): ResNetBlock(
+      #params: 0.3M, #flops: 75.83M
+      (conv1): Conv2d(
+        128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)
+        #params: 0.15M, #flops: 37.75M
+      )
+      (bn1): BatchNorm2d(
+        128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True
+        #params: 0.26K, #flops: 0.16M
+      )
+      (conv2): Conv2d(
+        128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)
+        #params: 0.15M, #flops: 37.75M
+      )
+      (bn2): BatchNorm2d(
+        128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True
+        #params: 0.26K, #flops: 0.16M
+      )
+      (shortcut): Sequential(#params: 0, #flops: N/A)
+    )
+  )
+  (layer3): Sequential(
+    #params: 2.1M, #flops: 0.13G
+    (0): ResNetBlock(
+      #params: 0.92M, #flops: 58.97M
+      (conv1): Conv2d(
+        128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1)
+        #params: 0.3M, #flops: 18.87M
+      )
+      (bn1): BatchNorm2d(
+        256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True
+        #params: 0.51K, #flops: 81.92K
+      )
+      (conv2): Conv2d(
+        256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)
+        #params: 0.59M, #flops: 37.75M
+      )
+      (bn2): BatchNorm2d(
+        256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True
+        #params: 0.51K, #flops: 81.92K
+      )
+      (shortcut): Sequential(
+        #params: 33.54K, #flops: 2.18M
+        (0): Conv2d(
+          128, 256, kernel_size=(1, 1), stride=(2, 2)
+          #params: 33.02K, #flops: 2.1M
+        )
+        (1): BatchNorm2d(
+          256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True
+          #params: 0.51K, #flops: 81.92K
+        )
+      )
+    )
+    (1): ResNetBlock(
+      #params: 1.18M, #flops: 75.66M
+      (conv1): Conv2d(
+        256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)
+        #params: 0.59M, #flops: 37.75M
+      )
+      (bn1): BatchNorm2d(
+        256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True
+        #params: 0.51K, #flops: 81.92K
+      )
+      (conv2): Conv2d(
+        256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)
+        #params: 0.59M, #flops: 37.75M
+      )
+      (bn2): BatchNorm2d(
+        256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True
+        #params: 0.51K, #flops: 81.92K
+      )
+      (shortcut): Sequential(#params: 0, #flops: N/A)
+    )
+  )
+  (layer4): Sequential(
+    #params: 8.4M, #flops: 0.13G
+    (0): ResNetBlock(
+      #params: 3.67M, #flops: 58.84M
+      (conv1): Conv2d(
+        256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1)
+        #params: 1.18M, #flops: 18.87M
+      )
+      (bn1): BatchNorm2d(
+        512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True
+        #params: 1.02K, #flops: 40.96K
+      )
+      (conv2): Conv2d(
+        512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)
+        #params: 2.36M, #flops: 37.75M
+      )
+      (bn2): BatchNorm2d(
+        512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True
+        #params: 1.02K, #flops: 40.96K
+      )
+      (shortcut): Sequential(
+        #params: 0.13M, #flops: 2.14M
+        (0): Conv2d(
+          256, 512, kernel_size=(1, 1), stride=(2, 2)
+          #params: 0.13M, #flops: 2.1M
+        )
+        (1): BatchNorm2d(
+          512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True
+          #params: 1.02K, #flops: 40.96K
+        )
+      )
+    )
+    (1): ResNetBlock(
+      #params: 4.72M, #flops: 75.58M
+      (conv1): Conv2d(
+        512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)
+        #params: 2.36M, #flops: 37.75M
+      )
+      (bn1): BatchNorm2d(
+        512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True
+        #params: 1.02K, #flops: 40.96K
+      )
+      (conv2): Conv2d(
+        512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)
+        #params: 2.36M, #flops: 37.75M
+      )
+      (bn2): BatchNorm2d(
+        512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True
+        #params: 1.02K, #flops: 40.96K
+      )
+      (shortcut): Sequential(#params: 0, #flops: N/A)
+    )
+  )
+  (linear): Linear(
+    in_features=512, out_features=10, bias=True
+    #params: 5.13K, #flops: 5.12K
+  )
+)
+[32m[2023-03-16 09:20:20 resnet18][33m(main.py 74)[39m: INFO number of params: 11.178698 M
+[32m[2023-03-16 09:20:20 resnet18][33m(main.py 75)[39m: INFO flops: 558.49472 MFLOPS
+[32m[2023-03-16 09:20:20 resnet18][33m(main.py 91)[39m: INFO Start training
+Unsupported operator aten::add_ encountered 28 time(s)
+Unsupported operator aten::avg_pool2d encountered 1 time(s)
+The following submodules of the model were never called during the trace of the graph. They may be unused, or they were accessed by direct calls to .forward() or via other python methods. In the latter case they will have zeros for statistics, though their statistics will still contribute to their parent calling module.
+layer1.0.shortcut, layer1.1.shortcut, layer2.1.shortcut, layer3.1.shortcut, layer4.1.shortcut
+
+
+
+
+
+
+
+
+
+
+ 90%|████████████████████████████████████████▍    | 44/49 [00:19<00:02,  2.47it/s]
+[32m[2023-03-16 09:20:42 resnet18][33m(main.py 159)[39m: INFO Train: [0/100]	lr 0.000300	time 0.3411 (0.4367)	loss 2.1917 (2.2502)	Acc@1 19.575 (15.632)	Mem 5207MB
+[32m[2023-03-16 09:20:42 resnet18][33m(main.py 168)[39m: INFO EPOCH 0 training takes 0:00:21
+[32m[2023-03-16 09:20:42 resnet18][33m(main.py 95)[39m: INFO  * Train Acc 15.632 Train Loss 2.250
+[32m[2023-03-16 09:20:42 resnet18][33m(main.py 96)[39m: INFO Accuracy of the network on the 50000 train images: 15.6%
+[32m[2023-03-16 09:20:44 resnet18][33m(main.py 201)[39m: INFO Validate: 	Time 0.088 (0.197)	Loss 2.1464 (2.1540)	Acc@1 22.832 (22.770)	Mem 5207MB
+[32m[2023-03-16 09:20:44 resnet18][33m(main.py 100)[39m: INFO  * Val Acc 22.770 Val Loss 2.154
+[32m[2023-03-16 09:20:44 resnet18][33m(main.py 101)[39m: INFO Accuracy of the network on the 10000 val images: 22.8%
+[32m[2023-03-16 09:20:44 resnet18][33m(load_save.py 48)[39m: INFO output/resnet18/ckpt_best.pth saving......
+[32m[2023-03-16 09:20:44 resnet18][33m(load_save.py 50)[39m: INFO output/resnet18/ckpt_best.pth saved !!!
+[32m[2023-03-16 09:20:44 resnet18][33m(main.py 109)[39m: INFO Max accuracy: 22.77%
+
+
+
+
+
+
+
+
+
+
+ 90%|████████████████████████████████████████▍    | 44/49 [00:19<00:02,  2.45it/s]
+[32m[2023-03-16 09:21:06 resnet18][33m(main.py 159)[39m: INFO Train: [1/100]	lr 0.000300	time 0.3442 (0.4341)	loss 1.9778 (2.0887)	Acc@1 30.307 (23.500)	Mem 5207MB
+[32m[2023-03-16 09:21:06 resnet18][33m(main.py 168)[39m: INFO EPOCH 1 training takes 0:00:21
+[32m[2023-03-16 09:21:06 resnet18][33m(main.py 95)[39m: INFO  * Train Acc 23.500 Train Loss 2.089
+[32m[2023-03-16 09:21:06 resnet18][33m(main.py 96)[39m: INFO Accuracy of the network on the 50000 train images: 23.5%
+[32m[2023-03-16 09:21:08 resnet18][33m(main.py 201)[39m: INFO Validate: 	Time 0.089 (0.215)	Loss 1.9710 (1.9830)	Acc@1 30.357 (29.330)	Mem 5207MB
+[32m[2023-03-16 09:21:08 resnet18][33m(main.py 100)[39m: INFO  * Val Acc 29.330 Val Loss 1.983
+[32m[2023-03-16 09:21:08 resnet18][33m(main.py 101)[39m: INFO Accuracy of the network on the 10000 val images: 29.3%
+[32m[2023-03-16 09:21:08 resnet18][33m(load_save.py 48)[39m: INFO output/resnet18/ckpt_best.pth saving......
+[32m[2023-03-16 09:21:08 resnet18][33m(load_save.py 50)[39m: INFO output/resnet18/ckpt_best.pth saved !!!
+[32m[2023-03-16 09:21:08 resnet18][33m(main.py 109)[39m: INFO Max accuracy: 29.33%
+
+
+
+
+
+
+
+
+
+
+100%|█████████████████████████████████████████████| 49/49 [00:21<00:00,  2.57it/s]
+[32m[2023-03-16 09:21:30 resnet18][33m(main.py 159)[39m: INFO Train: [2/100]	lr 0.000300	time 0.3444 (0.4395)	loss 1.8947 (1.9414)	Acc@1 30.189 (28.844)	Mem 5207MB
+[32m[2023-03-16 09:21:30 resnet18][33m(main.py 168)[39m: INFO EPOCH 2 training takes 0:00:21
+[32m[2023-03-16 09:21:30 resnet18][33m(main.py 95)[39m: INFO  * Train Acc 28.844 Train Loss 1.941
+
+[32m[2023-03-16 09:21:30 resnet18][33m(main.py 96)[39m: INFO Accuracy of the network on the 50000 train images: 28.8%
+[32m[2023-03-16 09:21:32 resnet18][33m(main.py 201)[39m: INFO Validate: 	Time 0.089 (0.215)	Loss 1.8404 (1.8518)	Acc@1 33.418 (32.720)	Mem 5207MB
+[32m[2023-03-16 09:21:32 resnet18][33m(main.py 100)[39m: INFO  * Val Acc 32.720 Val Loss 1.852
+[32m[2023-03-16 09:21:32 resnet18][33m(main.py 101)[39m: INFO Accuracy of the network on the 10000 val images: 32.7%
+[32m[2023-03-16 09:21:32 resnet18][33m(load_save.py 48)[39m: INFO output/resnet18/ckpt_best.pth saving......
+[32m[2023-03-16 09:21:33 resnet18][33m(load_save.py 50)[39m: INFO output/resnet18/ckpt_best.pth saved !!!
+[32m[2023-03-16 09:21:33 resnet18][33m(main.py 109)[39m: INFO Max accuracy: 32.72%
+
+
+
+
+
+
+
+
+
+
+ 98%|████████████████████████████████████████████ | 48/49 [00:21<00:00,  2.44it/s]
+[32m[2023-03-16 09:21:54 resnet18][33m(main.py 159)[39m: INFO Train: [3/100]	lr 0.000299	time 0.3436 (0.4375)	loss 1.7852 (1.8398)	Acc@1 32.547 (32.282)	Mem 5207MB
+[32m[2023-03-16 09:21:54 resnet18][33m(main.py 168)[39m: INFO EPOCH 3 training takes 0:00:21
+[32m[2023-03-16 09:21:54 resnet18][33m(main.py 95)[39m: INFO  * Train Acc 32.282 Train Loss 1.840
+
+[32m[2023-03-16 09:21:54 resnet18][33m(main.py 96)[39m: INFO Accuracy of the network on the 50000 train images: 32.3%
+[32m[2023-03-16 09:21:56 resnet18][33m(main.py 201)[39m: INFO Validate: 	Time 0.089 (0.210)	Loss 1.7526 (1.7604)	Acc@1 35.714 (37.030)	Mem 5207MB
+[32m[2023-03-16 09:21:56 resnet18][33m(main.py 100)[39m: INFO  * Val Acc 37.030 Val Loss 1.760
+[32m[2023-03-16 09:21:56 resnet18][33m(main.py 101)[39m: INFO Accuracy of the network on the 10000 val images: 37.0%
+[32m[2023-03-16 09:21:56 resnet18][33m(load_save.py 48)[39m: INFO output/resnet18/ckpt_best.pth saving......
+[32m[2023-03-16 09:21:57 resnet18][33m(load_save.py 50)[39m: INFO output/resnet18/ckpt_best.pth saved !!!
+[32m[2023-03-16 09:21:57 resnet18][33m(main.py 109)[39m: INFO Max accuracy: 37.03%
+
+
+
+
+
+
+
+
+
+
+ 96%|███████████████████████████████████████████▏ | 47/49 [00:20<00:00,  2.44it/s]
+[32m[2023-03-16 09:22:19 resnet18][33m(main.py 159)[39m: INFO Train: [4/100]	lr 0.000299	time 0.3450 (0.4421)	loss 1.6959 (1.7664)	Acc@1 39.976 (35.452)	Mem 5207MB
+[32m[2023-03-16 09:22:19 resnet18][33m(main.py 168)[39m: INFO EPOCH 4 training takes 0:00:21
+[32m[2023-03-16 09:22:19 resnet18][33m(main.py 95)[39m: INFO  * Train Acc 35.452 Train Loss 1.766
+
+[32m[2023-03-16 09:22:19 resnet18][33m(main.py 96)[39m: INFO Accuracy of the network on the 50000 train images: 35.5%
+[32m[2023-03-16 09:22:21 resnet18][33m(main.py 201)[39m: INFO Validate: 	Time 0.088 (0.211)	Loss 1.6866 (1.6924)	Acc@1 37.755 (38.390)	Mem 5207MB
+[32m[2023-03-16 09:22:21 resnet18][33m(main.py 100)[39m: INFO  * Val Acc 38.390 Val Loss 1.692
+[32m[2023-03-16 09:22:21 resnet18][33m(main.py 101)[39m: INFO Accuracy of the network on the 10000 val images: 38.4%
+[32m[2023-03-16 09:22:21 resnet18][33m(load_save.py 48)[39m: INFO output/resnet18/ckpt_best.pth saving......
+[32m[2023-03-16 09:22:21 resnet18][33m(load_save.py 50)[39m: INFO output/resnet18/ckpt_best.pth saved !!!
+[32m[2023-03-16 09:22:21 resnet18][33m(main.py 109)[39m: INFO Max accuracy: 38.39%
+
+
+
+
+
+
+
+
+
+
+ 96%|███████████████████████████████████████████▏ | 47/49 [00:20<00:00,  2.44it/s]
+[32m[2023-03-16 09:22:43 resnet18][33m(main.py 159)[39m: INFO Train: [5/100]	lr 0.000298	time 0.3435 (0.4402)	loss 1.7042 (1.7084)	Acc@1 35.967 (37.142)	Mem 5207MB
+[32m[2023-03-16 09:22:43 resnet18][33m(main.py 168)[39m: INFO EPOCH 5 training takes 0:00:21
+[32m[2023-03-16 09:22:43 resnet18][33m(main.py 95)[39m: INFO  * Train Acc 37.142 Train Loss 1.708
+
+[32m[2023-03-16 09:22:43 resnet18][33m(main.py 96)[39m: INFO Accuracy of the network on the 50000 train images: 37.1%
+[32m[2023-03-16 09:22:45 resnet18][33m(main.py 201)[39m: INFO Validate: 	Time 0.088 (0.209)	Loss 1.6279 (1.6357)	Acc@1 40.689 (40.380)	Mem 5207MB
+[32m[2023-03-16 09:22:45 resnet18][33m(main.py 100)[39m: INFO  * Val Acc 40.380 Val Loss 1.636
+[32m[2023-03-16 09:22:45 resnet18][33m(main.py 101)[39m: INFO Accuracy of the network on the 10000 val images: 40.4%
+[32m[2023-03-16 09:22:45 resnet18][33m(load_save.py 48)[39m: INFO output/resnet18/ckpt_best.pth saving......
+[32m[2023-03-16 09:22:46 resnet18][33m(load_save.py 50)[39m: INFO output/resnet18/ckpt_best.pth saved !!!
+[32m[2023-03-16 09:22:46 resnet18][33m(main.py 109)[39m: INFO Max accuracy: 40.38%
+
+
+
+
+
+
+
+
+
+
+ 94%|██████████████████████████████████████████▏  | 46/49 [00:20<00:01,  2.44it/s]
+[32m[2023-03-16 09:23:07 resnet18][33m(main.py 159)[39m: INFO Train: [6/100]	lr 0.000297	time 0.3439 (0.4400)	loss 1.6444 (1.6552)	Acc@1 40.920 (39.372)	Mem 5207MB
+[32m[2023-03-16 09:23:07 resnet18][33m(main.py 168)[39m: INFO EPOCH 6 training takes 0:00:21
+[32m[2023-03-16 09:23:07 resnet18][33m(main.py 95)[39m: INFO  * Train Acc 39.372 Train Loss 1.655
+
+[32m[2023-03-16 09:23:07 resnet18][33m(main.py 96)[39m: INFO Accuracy of the network on the 50000 train images: 39.4%
+[32m[2023-03-16 09:23:09 resnet18][33m(main.py 201)[39m: INFO Validate: 	Time 0.088 (0.209)	Loss 1.5862 (1.5869)	Acc@1 42.985 (42.220)	Mem 5207MB
+[32m[2023-03-16 09:23:09 resnet18][33m(main.py 100)[39m: INFO  * Val Acc 42.220 Val Loss 1.587
+[32m[2023-03-16 09:23:09 resnet18][33m(main.py 101)[39m: INFO Accuracy of the network on the 10000 val images: 42.2%
+[32m[2023-03-16 09:23:09 resnet18][33m(load_save.py 48)[39m: INFO output/resnet18/ckpt_best.pth saving......
+  0%|                                                      | 0/49 [00:00<?, ?it/s]
+[32m[2023-03-16 09:23:10 resnet18][33m(load_save.py 50)[39m: INFO output/resnet18/ckpt_best.pth saved !!!
+
+
+
+
+
+
+
+
+
+
+ 92%|█████████████████████████████████████████▎   | 45/49 [00:20<00:01,  2.44it/s]
+[32m[2023-03-16 09:23:32 resnet18][33m(main.py 159)[39m: INFO Train: [7/100]	lr 0.000296	time 0.3440 (0.4417)	loss 1.5733 (1.6094)	Acc@1 44.340 (41.132)	Mem 5207MB
+[32m[2023-03-16 09:23:32 resnet18][33m(main.py 168)[39m: INFO EPOCH 7 training takes 0:00:21
+[32m[2023-03-16 09:23:32 resnet18][33m(main.py 95)[39m: INFO  * Train Acc 41.132 Train Loss 1.609
+
+[32m[2023-03-16 09:23:32 resnet18][33m(main.py 96)[39m: INFO Accuracy of the network on the 50000 train images: 41.1%
+[32m[2023-03-16 09:23:34 resnet18][33m(main.py 201)[39m: INFO Validate: 	Time 0.088 (0.211)	Loss 1.5478 (1.5467)	Acc@1 44.260 (43.350)	Mem 5207MB
+[32m[2023-03-16 09:23:34 resnet18][33m(main.py 100)[39m: INFO  * Val Acc 43.350 Val Loss 1.547
+[32m[2023-03-16 09:23:34 resnet18][33m(main.py 101)[39m: INFO Accuracy of the network on the 10000 val images: 43.4%
+[32m[2023-03-16 09:23:34 resnet18][33m(load_save.py 48)[39m: INFO output/resnet18/ckpt_best.pth saving......
+[32m[2023-03-16 09:23:34 resnet18][33m(load_save.py 50)[39m: INFO output/resnet18/ckpt_best.pth saved !!!
+[32m[2023-03-16 09:23:34 resnet18][33m(main.py 109)[39m: INFO Max accuracy: 43.35%
+
+
+
+
+
+
+
+
+
+
+ 92%|█████████████████████████████████████████▎   | 45/49 [00:19<00:01,  2.44it/s]
+[32m[2023-03-16 09:23:56 resnet18][33m(main.py 159)[39m: INFO Train: [8/100]	lr 0.000295	time 0.3459 (0.4386)	loss 1.5660 (1.5659)	Acc@1 42.453 (42.584)	Mem 5207MB
+[32m[2023-03-16 09:23:56 resnet18][33m(main.py 168)[39m: INFO EPOCH 8 training takes 0:00:21
+[32m[2023-03-16 09:23:56 resnet18][33m(main.py 95)[39m: INFO  * Train Acc 42.584 Train Loss 1.566
+[32m[2023-03-16 09:23:56 resnet18][33m(main.py 96)[39m: INFO Accuracy of the network on the 50000 train images: 42.6%
+[32m[2023-03-16 09:23:58 resnet18][33m(main.py 201)[39m: INFO Validate: 	Time 0.088 (0.221)	Loss 1.5079 (1.5037)	Acc@1 44.770 (44.930)	Mem 5207MB
+[32m[2023-03-16 09:23:58 resnet18][33m(main.py 100)[39m: INFO  * Val Acc 44.930 Val Loss 1.504
+[32m[2023-03-16 09:23:58 resnet18][33m(main.py 101)[39m: INFO Accuracy of the network on the 10000 val images: 44.9%
+[32m[2023-03-16 09:23:58 resnet18][33m(load_save.py 48)[39m: INFO output/resnet18/ckpt_best.pth saving......
+[32m[2023-03-16 09:23:59 resnet18][33m(load_save.py 50)[39m: INFO output/resnet18/ckpt_best.pth saved !!!
+[32m[2023-03-16 09:23:59 resnet18][33m(main.py 109)[39m: INFO Max accuracy: 44.93%
+
+
+
+
+
+
+
+
+
+
+ 96%|███████████████████████████████████████████▏ | 47/49 [00:21<00:00,  2.44it/s]
+[32m[2023-03-16 09:24:21 resnet18][33m(main.py 159)[39m: INFO Train: [9/100]	lr 0.000294	time 0.3438 (0.4551)	loss 1.5199 (1.5264)	Acc@1 43.514 (44.136)	Mem 5207MB
+[32m[2023-03-16 09:24:21 resnet18][33m(main.py 168)[39m: INFO EPOCH 9 training takes 0:00:22
+[32m[2023-03-16 09:24:21 resnet18][33m(main.py 95)[39m: INFO  * Train Acc 44.136 Train Loss 1.526
+
+[32m[2023-03-16 09:24:21 resnet18][33m(main.py 96)[39m: INFO Accuracy of the network on the 50000 train images: 44.1%
+[32m[2023-03-16 09:24:23 resnet18][33m(main.py 201)[39m: INFO Validate: 	Time 0.088 (0.213)	Loss 1.4775 (1.4704)	Acc@1 46.556 (46.090)	Mem 5207MB
+[32m[2023-03-16 09:24:23 resnet18][33m(main.py 100)[39m: INFO  * Val Acc 46.090 Val Loss 1.470
+[32m[2023-03-16 09:24:23 resnet18][33m(main.py 101)[39m: INFO Accuracy of the network on the 10000 val images: 46.1%
+[32m[2023-03-16 09:24:23 resnet18][33m(load_save.py 48)[39m: INFO output/resnet18/ckpt_best.pth saving......
+[32m[2023-03-16 09:24:24 resnet18][33m(load_save.py 50)[39m: INFO output/resnet18/ckpt_best.pth saved !!!
+[32m[2023-03-16 09:24:24 resnet18][33m(main.py 109)[39m: INFO Max accuracy: 46.09%
+
+
+
+
+
+
+
+
+
+
+ 96%|███████████████████████████████████████████▏ | 47/49 [00:20<00:00,  2.44it/s]
+[32m[2023-03-16 09:24:45 resnet18][33m(main.py 159)[39m: INFO Train: [10/100]	lr 0.000293	time 0.3435 (0.4371)	loss 1.4733 (1.4914)	Acc@1 46.580 (45.566)	Mem 5207MB
+[32m[2023-03-16 09:24:45 resnet18][33m(main.py 168)[39m: INFO EPOCH 10 training takes 0:00:21
+[32m[2023-03-16 09:24:45 resnet18][33m(main.py 95)[39m: INFO  * Train Acc 45.566 Train Loss 1.491
+
+[32m[2023-03-16 09:24:45 resnet18][33m(main.py 96)[39m: INFO Accuracy of the network on the 50000 train images: 45.6%
+[32m[2023-03-16 09:24:47 resnet18][33m(main.py 201)[39m: INFO Validate: 	Time 0.088 (0.216)	Loss 1.4403 (1.4313)	Acc@1 45.791 (47.240)	Mem 5207MB
+[32m[2023-03-16 09:24:47 resnet18][33m(main.py 100)[39m: INFO  * Val Acc 47.240 Val Loss 1.431
+[32m[2023-03-16 09:24:47 resnet18][33m(main.py 101)[39m: INFO Accuracy of the network on the 10000 val images: 47.2%
+[32m[2023-03-16 09:24:47 resnet18][33m(load_save.py 48)[39m: INFO output/resnet18/ckpt_best.pth saving......
+  0%|                                                      | 0/49 [00:00<?, ?it/s]
+[32m[2023-03-16 09:24:48 resnet18][33m(load_save.py 50)[39m: INFO output/resnet18/ckpt_best.pth saved !!!
+
+
+
+
+
+
+
+
+
+
+ 94%|██████████████████████████████████████████▏  | 46/49 [00:20<00:01,  2.44it/s]
+[32m[2023-03-16 09:25:09 resnet18][33m(main.py 159)[39m: INFO Train: [11/100]	lr 0.000291	time 0.3433 (0.4398)	loss 1.4367 (1.4551)	Acc@1 47.877 (46.684)	Mem 5207MB
+[32m[2023-03-16 09:25:09 resnet18][33m(main.py 168)[39m: INFO EPOCH 11 training takes 0:00:21
+[32m[2023-03-16 09:25:09 resnet18][33m(main.py 95)[39m: INFO  * Train Acc 46.684 Train Loss 1.455
+
+[32m[2023-03-16 09:25:09 resnet18][33m(main.py 96)[39m: INFO Accuracy of the network on the 50000 train images: 46.7%
+[32m[2023-03-16 09:25:12 resnet18][33m(main.py 201)[39m: INFO Validate: 	Time 0.090 (0.209)	Loss 1.4080 (1.3959)	Acc@1 47.066 (48.750)	Mem 5207MB
+[32m[2023-03-16 09:25:12 resnet18][33m(main.py 100)[39m: INFO  * Val Acc 48.750 Val Loss 1.396
+[32m[2023-03-16 09:25:12 resnet18][33m(main.py 101)[39m: INFO Accuracy of the network on the 10000 val images: 48.7%
+[32m[2023-03-16 09:25:12 resnet18][33m(load_save.py 48)[39m: INFO output/resnet18/ckpt_best.pth saving......
+  0%|                                                      | 0/49 [00:00<?, ?it/s]
+[32m[2023-03-16 09:25:12 resnet18][33m(load_save.py 50)[39m: INFO output/resnet18/ckpt_best.pth saved !!!
+
+
+
+
+
+
+
+
+
+
+ 94%|██████████████████████████████████████████▏  | 46/49 [00:20<00:01,  2.44it/s]
+[32m[2023-03-16 09:25:34 resnet18][33m(main.py 159)[39m: INFO Train: [12/100]	lr 0.000289	time 0.3437 (0.4402)	loss 1.4073 (1.4197)	Acc@1 49.057 (48.378)	Mem 5207MB
+[32m[2023-03-16 09:25:34 resnet18][33m(main.py 168)[39m: INFO EPOCH 12 training takes 0:00:21
+[32m[2023-03-16 09:25:34 resnet18][33m(main.py 95)[39m: INFO  * Train Acc 48.378 Train Loss 1.420
+
+[32m[2023-03-16 09:25:34 resnet18][33m(main.py 96)[39m: INFO Accuracy of the network on the 50000 train images: 48.4%
+  0%|                                                      | 0/49 [00:00<?, ?it/s]
+[32m[2023-03-16 09:25:36 resnet18][33m(main.py 201)[39m: INFO Validate: 	Time 0.088 (0.209)	Loss 1.3762 (1.3664)	Acc@1 48.597 (49.870)	Mem 5207MB
+[32m[2023-03-16 09:25:36 resnet18][33m(main.py 100)[39m: INFO  * Val Acc 49.870 Val Loss 1.366
+[32m[2023-03-16 09:25:36 resnet18][33m(main.py 101)[39m: INFO Accuracy of the network on the 10000 val images: 49.9%
+[32m[2023-03-16 09:25:36 resnet18][33m(load_save.py 48)[39m: INFO output/resnet18/ckpt_best.pth saving......
+[32m[2023-03-16 09:25:36 resnet18][33m(load_save.py 50)[39m: INFO output/resnet18/ckpt_best.pth saved !!!
+
+
+
+
+
+
+
+
+
+
+ 92%|█████████████████████████████████████████▎   | 45/49 [00:19<00:01,  2.44it/s]
+[32m[2023-03-16 09:25:58 resnet18][33m(main.py 159)[39m: INFO Train: [13/100]	lr 0.000288	time 0.3441 (0.4384)	loss 1.3673 (1.3909)	Acc@1 47.524 (49.266)	Mem 5207MB
+[32m[2023-03-16 09:25:58 resnet18][33m(main.py 168)[39m: INFO EPOCH 13 training takes 0:00:21
+[32m[2023-03-16 09:25:58 resnet18][33m(main.py 95)[39m: INFO  * Train Acc 49.266 Train Loss 1.391
+
+[32m[2023-03-16 09:25:58 resnet18][33m(main.py 96)[39m: INFO Accuracy of the network on the 50000 train images: 49.3%
+  0%|                                                      | 0/49 [00:00<?, ?it/s]
+[32m[2023-03-16 09:26:00 resnet18][33m(main.py 201)[39m: INFO Validate: 	Time 0.088 (0.203)	Loss 1.3385 (1.3335)	Acc@1 48.980 (51.390)	Mem 5207MB
+[32m[2023-03-16 09:26:00 resnet18][33m(main.py 100)[39m: INFO  * Val Acc 51.390 Val Loss 1.333
+[32m[2023-03-16 09:26:00 resnet18][33m(main.py 101)[39m: INFO Accuracy of the network on the 10000 val images: 51.4%
+[32m[2023-03-16 09:26:00 resnet18][33m(load_save.py 48)[39m: INFO output/resnet18/ckpt_best.pth saving......
+[32m[2023-03-16 09:26:00 resnet18][33m(load_save.py 50)[39m: INFO output/resnet18/ckpt_best.pth saved !!!
+
+
+
+
+
+
+
+
+
+
+
+ 92%|█████████████████████████████████████████▎   | 45/49 [00:19<00:01,  2.44it/s]
+[32m[2023-03-16 09:26:22 resnet18][33m(main.py 159)[39m: INFO Train: [14/100]	lr 0.000286	time 0.3440 (0.4395)	loss 1.3657 (1.3598)	Acc@1 48.703 (50.316)	Mem 5207MB
+[32m[2023-03-16 09:26:22 resnet18][33m(main.py 168)[39m: INFO EPOCH 14 training takes 0:00:21
+[32m[2023-03-16 09:26:22 resnet18][33m(main.py 95)[39m: INFO  * Train Acc 50.316 Train Loss 1.360
+[32m[2023-03-16 09:26:22 resnet18][33m(main.py 96)[39m: INFO Accuracy of the network on the 50000 train images: 50.3%
+[32m[2023-03-16 09:26:24 resnet18][33m(main.py 201)[39m: INFO Validate: 	Time 0.089 (0.204)	Loss 1.3177 (1.3126)	Acc@1 50.000 (51.700)	Mem 5207MB
+[32m[2023-03-16 09:26:24 resnet18][33m(main.py 100)[39m: INFO  * Val Acc 51.700 Val Loss 1.313
+[32m[2023-03-16 09:26:24 resnet18][33m(main.py 101)[39m: INFO Accuracy of the network on the 10000 val images: 51.7%
+[32m[2023-03-16 09:26:24 resnet18][33m(load_save.py 48)[39m: INFO output/resnet18/ckpt_best.pth saving......
+[32m[2023-03-16 09:26:25 resnet18][33m(load_save.py 50)[39m: INFO output/resnet18/ckpt_best.pth saved !!!
+[32m[2023-03-16 09:26:25 resnet18][33m(main.py 109)[39m: INFO Max accuracy: 51.70%
+
+Traceback (most recent call last):
+  File "/home/vanessaxteo/sp23-nmep-hw1/main.py", line 245, in <module>
+    main(config)
+  File "/home/vanessaxteo/sp23-nmep-hw1/main.py", line 94, in main
+    train_acc1, train_loss = train_one_epoch(config, model, criterion, data_loader_train, optimizer, epoch)
+  File "/home/vanessaxteo/sp23-nmep-hw1/main.py", line 152, in train_one_epoch
+    loss_meter.update(loss.item(), targets.size(0))
+KeyboardInterrupt
